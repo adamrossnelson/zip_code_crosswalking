@@ -1,0 +1,223 @@
+---------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\Adam Ross Nelson\Downloads\zip_code_research.txt
+  log type:  text
+ opened on:  11 Jan 2020, 10:21:13
+
+. 
+. // Record of building a list of zip codes to target for rural research.
+. 
+. // This file comes from:
+. // https://data.world/lukewhyte/us-population-by-zip-code-2010-2016/workspace/file?filename
+> =pop-by-zip-code.csv
+. import delimited pop-by-zip-code.csv
+(9 vars, 33,120 obs)
+
+. rename ïzip_code zip_code
+
+. list in 1/5
+
+     +-----------------------------------------------------------------------------+
+     | zip_code   y2016   y2015   y2014   y2013   y2012   y2011   y2010   aggreg~e |
+     |-----------------------------------------------------------------------------|
+  1. |      601   17800   17982   18088   18450   18544   18533   18570     127967 |
+  2. |      602   39716   40260   40859   41302   41640   41930   41520     287227 |
+  3. |      603   51565   52408   53162   53683   54540   54475   54689     374522 |
+  4. |      606    6320    6331    6415    6591    6593    6386    6615      45251 |
+  5. |      610   27976   28328   28805   28963   29141   29111   29016     201340 |
+     +-----------------------------------------------------------------------------+
+
+. list if zip_code == 54751
+
+       +-----------------------------------------------------------------------------+
+       | zip_code   y2016   y2015   y2014   y2013   y2012   y2011   y2010   aggreg~e |
+       |-----------------------------------------------------------------------------|
+18282. |    54751   25904   25848   25881   25904   25957   25674   25642     180810 |
+       +-----------------------------------------------------------------------------+
+
+. list if zip_code == 22204
+
+       +-----------------------------------------------------------------------------+
+       | zip_code   y2016   y2015   y2014   y2013   y2012   y2011   y2010   aggreg~e |
+       |-----------------------------------------------------------------------------|
+ 6824. |    22204   54046   53091   52512   49521   49348   48247   47233     353998 |
+       +-----------------------------------------------------------------------------+
+
+. save pop-by-zip-code.dta, replace
+file pop-by-zip-code.dta saved
+
+. clear
+
+. 
+. // This file comes from:
+. // https://simplemaps.com/data/us-zips
+. import delimited uszips.csv
+(16 vars, 33,099 obs)
+
+. list in 1/5
+
+     +-----------------------------------------------------------------------------------+
+  1. | zip |      lat |       lng |      city | state_id |  state_name | zcta | parent~a |
+     | 601 | 18.18004 | -66.75218 |  Adjuntas |       PR | Puerto Rico | TRUE |        . |
+     |----------------------------------------+------------------------------------------|
+     |      popula~n      |      density      |      county~s      |      county_~e      |
+     |         18570      |        111.4      |         72001      |       Adjuntas      |
+     |-----------------------------------------------------------------------------------|
+     |                           all_county_weights    |    imprec~e    |    military    |
+     |                 {'72001':99.43,'72141':0.57}    |       FALSE    |       FALSE    |
+     |-----------------------------------------------------------------------------------|
+     |                                           timezone                                |
+     |                                America/Puerto_Rico                                |
+     +-----------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------+
+  2. | zip |      lat |       lng |      city | state_id |  state_name | zcta | parent~a |
+     | 602 | 18.36073 | -67.17517 |    Aguada |       PR | Puerto Rico | TRUE |        . |
+     |----------------------------------------+------------------------------------------|
+     |      popula~n      |      density      |      county~s      |      county_~e      |
+     |         41520      |        523.5      |         72003      |         Aguada      |
+     |-----------------------------------------------------------------------------------|
+     |                           all_county_weights    |    imprec~e    |    military    |
+     |                                {'72003':100}    |       FALSE    |       FALSE    |
+     |-----------------------------------------------------------------------------------|
+     |                                           timezone                                |
+     |                                America/Puerto_Rico                                |
+     +-----------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------+
+  3. | zip |      lat |       lng |      city | state_id |  state_name | zcta | parent~a |
+     | 603 | 18.45439 | -67.12202 | Aguadilla |       PR | Puerto Rico | TRUE |        . |
+     |----------------------------------------+------------------------------------------|
+     |      popula~n      |      density      |      county~s      |      county_~e      |
+     |         54689      |        667.9      |         72005      |      Aguadilla      |
+     |-----------------------------------------------------------------------------------|
+     |                           all_county_weights    |    imprec~e    |    military    |
+     |                                {'72005':100}    |       FALSE    |       FALSE    |
+     |-----------------------------------------------------------------------------------|
+     |                                           timezone                                |
+     |                                America/Puerto_Rico                                |
+     +-----------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------+
+  4. | zip |      lat |       lng |      city | state_id |  state_name | zcta | parent~a |
+     | 606 | 18.16724 | -66.93828 |   Maricao |       PR | Puerto Rico | TRUE |        . |
+     |----------------------------------------+------------------------------------------|
+     |      popula~n      |      density      |      county~s      |      county_~e      |
+     |          6615      |         60.4      |         72093      |        Maricao      |
+     |-----------------------------------------------------------------------------------|
+     |                           all_county_weights    |    imprec~e    |    military    |
+     |    {'72093':94.88,'72121':1.35,'72153':3.78}    |       FALSE    |       FALSE    |
+     |-----------------------------------------------------------------------------------|
+     |                                           timezone                                |
+     |                                America/Puerto_Rico                                |
+     +-----------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------+
+  5. | zip |      lat |       lng |      city | state_id |  state_name | zcta | parent~a |
+     | 610 | 18.29032 | -67.12243 |    Anasco |       PR | Puerto Rico | TRUE |        . |
+     |----------------------------------------+------------------------------------------|
+     |      popula~n      |      density      |      county~s      |      county_~e      |
+     |         29016      |          312      |         72011      |        AÃ±asco      |
+     |-----------------------------------------------------------------------------------|
+     |                           all_county_weights    |    imprec~e    |    military    |
+     |                 {'72003':0.55,'72011':99.45}    |       FALSE    |       FALSE    |
+     |-----------------------------------------------------------------------------------|
+     |                                           timezone                                |
+     |                                America/Puerto_Rico                                |
+     +-----------------------------------------------------------------------------------+
+
+. save uszips.dta, replace
+file uszips.dta saved
+
+. clear
+
+. 
+. // Merge the two datasets
+. use pop-by-zip-code.dta
+
+. rename zip_code zip
+
+. merge 1:1 zip using uszips.dta
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            21
+        from master                        21  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                            33,099  (_merge==3)
+    -----------------------------------------
+
+. 
+. // Limit data to Midwest States
+. keep if inlist(state_name,"Wisconsin","Illinois","Iowa", ///
+>                 "Indiana","Ohio","Minnesota")
+(27,177 observations deleted)
+
+. 
+. // Find 75th percential density of revion (low to moderate density)
+. preserve
+
+. sum density, detail
+
+                           density
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%          1.2              0
+ 5%          3.2              0
+10%          4.7              0       Obs               5,943
+25%          8.8              0       Sum of Wgt.       5,943
+
+50%         24.9                      Mean           312.8418
+                        Largest       Std. Dev.      904.5372
+75%        185.5        11892.3
+90%        898.7        12585.9       Variance       818187.5
+95%       1531.2        12796.8       Skewness        6.92692
+99%       4242.7        13562.3       Kurtosis       68.67397
+
+. keep if density <= r(p75)
+(1,485 observations deleted)
+
+. export delimited zip state_name density ///
+> using "low_moderate_density_midwest_zip_codes.csv", replace
+file low_moderate_density_midwest_zip_codes.csv saved
+
+. restore
+
+.                                 
+. // Find median density of the region (low density)
+. sum density, detail
+
+                           density
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%          1.2              0
+ 5%          3.2              0
+10%          4.7              0       Obs               5,943
+25%          8.8              0       Sum of Wgt.       5,943
+
+50%         24.9                      Mean           312.8418
+                        Largest       Std. Dev.      904.5372
+75%        185.5        11892.3
+90%        898.7        12585.9       Variance       818187.5
+95%       1531.2        12796.8       Skewness        6.92692
+99%       4242.7        13562.3       Kurtosis       68.67397
+
+. 
+. // Limit density to below median
+. keep if density <= r(p50)
+(2,967 observations deleted)
+
+. 
+. // Save resulting list
+. export delimited zip state_name density ///
+> using "low_density_midwest_zip_codes.csv", replace
+file low_density_midwest_zip_codes.csv saved
+
+. 
+. log close
+      name:  <unnamed>
+       log:  C:\Users\Adam Ross Nelson\Downloads\zip_code_research.txt
+  log type:  text
+ closed on:  11 Jan 2020, 10:21:14
+---------------------------------------------------------------------------------------------
